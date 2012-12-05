@@ -1,0 +1,8 @@
+/todo.txt
+/design/
+*.sublime-workspace
+*.sublime-project
+node_modules
+/build/dist/
+config.js
+config-prod.js
