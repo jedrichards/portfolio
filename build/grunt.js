@@ -1,4 +1,6 @@
-module.exports = function(grunt) {
+var config = require("./config");
+
+module.exports = function (grunt) {
 
     "use strict";
 
@@ -79,18 +81,18 @@ module.exports = function(grunt) {
             },
             deploySite: {
                 src: "<%= siteDistDir %>/",
-                dest: "/srv/www/seisaku.co.uk.v2",
+                dest: config.prodSiteLocation,
                 recursive: true,
                 syncDest: true,
-                host: "wintermute",
+                host: config.prodHost,
                 compareMode: "sizeOnly"
             },
             deployAPI: {
                 src: "<%= apiDistDir %>/",
-                dest: "/var/node/seisaku-api/app",
+                dest: config.prodAPILocation,
                 recursive: true,
                 syncDest: true,
-                host: "wintermute",
+                host: config.prodHost,
                 compareMode: "sizeOnly",
                 args: ["--links"]
             }
@@ -157,12 +159,12 @@ module.exports = function(grunt) {
                 command: "cp ../api/config-prod.js ./dist/api/config.js",
                 stdout: true
             },
-            apiNPMInstall: {
-                command: "ssh wintermute 'cd /var/node/seisaku-api/app; npm install --production'",
+            prodAPINPMInstallCMD: {
+                command: config.prodAPINPMInstallCMD,
                 stdout: true
             },
-            apiMonitRestart: {
-                command: "ssh wintermute 'sudo monit restart seisaku-api'",
+            prodAPIRestartCMD: {
+                command: config.prodAPIRestartCMD,
                 stdout: true
             }
         },
@@ -189,5 +191,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask("testAPI","lint:build lint:api vows:api");
     grunt.registerTask("buildAPI","testAPI clean:api rsync:buildAPI shell:cpAPIProdConfigToDist");
-    grunt.registerTask("deployAPI","buildAPI rsync:deployAPI shell:apiNPMInstall shell:apiMonitRestart");
+    grunt.registerTask("deployAPI","buildAPI rsync:deployAPI shell:prodAPINPMInstallCMD shell:prodAPIRestartCMD");
 };
