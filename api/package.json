@@ -1,0 +1,16 @@
+{
+    "name": "seisaku-api",
+    "version": "0.0.1",
+    "main": "index.js",
+    "dependencies": {
+        "mongoose": "~3.3.1",
+        "async": "~0.1.22",
+        "restify": "~1.4.4",
+        "slugs": "~0.1.2",
+        "lodash": "~0.9.1",
+        "sanitizer": "~0.0.15",
+        "bcrypt": "~0.7.3",
+        "cookies": "~0.3.4",
+        "node-uuid": "~1.4.0"
+    }
+}
