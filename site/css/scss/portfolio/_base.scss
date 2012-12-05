@@ -1,0 +1,64 @@
+@font-face {
+    font-family: "Asap";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Asap"), local("Asap-Regular"), url(/fonts/asap-400-regular.woff) format("woff");
+}
+
+@font-face {
+    font-family: "Asap";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Asap Bold"), local("Asap-Bold"), url(/fonts/asap-700-bold.woff) format("woff");
+}
+
+@font-face {
+    font-family: "Droid Serif";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Droid Serif"), local("DroidSerif"), url(/fonts/droid-serif-400-regular.woff) format("woff");
+}
+
+@font-face {
+    font-family: "Droid Serif";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Droid Serif Bold"), local("DroidSerif-Bold"), url(/fonts/droid-serif-700-bold.woff) format("woff");
+}
+
+html {
+    font-size: $base-font-size-percent;
+    font-family: "Droid Serif";
+    font-weight: 400;
+}
+
+body {
+    color: #000;
+    background-color: #fff;
+    background-image: url(/img/bg-tile.png);
+}
+
+h1,h2,h3,p,ul {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-weight: 700;
+    @include font-size-rems(32px);
+}
+
+h2 {
+    font-weight: 400;
+    @include font-size-rems(24px);
+}
+
+h3 {
+    font-weight: 400;
+    @include font-size-rems(19px);
+}
+
+p {
+    font-weight: 400;
+    @include font-size-rems(16px);
+}
