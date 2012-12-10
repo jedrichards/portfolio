@@ -11,6 +11,7 @@
         "sanitizer": "~0.0.15",
         "bcrypt": "~0.7.3",
         "cookies": "~0.3.4",
-        "node-uuid": "~1.4.0"
+        "node-uuid": "~1.4.0",
+        "twitreq": "~0.0.1"
     }
 }
