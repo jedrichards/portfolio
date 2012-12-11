@@ -16,10 +16,14 @@ var options = {
     oAuthTokenSecret: config.api.twitter.oAuthTokenSecret
 }
 
-var cacheTime = 1000*60*60*6; // 6 hours
+var cacheTime = 1000*60*30; // 30 mins
 var cachedResponse;
 var lastRequestTime;
 
+/**
+ * Returns a cached object literal with details about my most recent tweet to
+ * the supplied callback function.
+ */
 module.exports = function (cb) {
 
     var nowTime = new Date().getTime();
@@ -49,7 +53,8 @@ module.exports = function (cb) {
                     if ( Array.isArray(parsedData) ) {
                         cachedResponse = {
                             text: parsedData[0].text,
-                            date: parsedData[0].created_at
+                            date: new Date(parsedData[0].created_at).getTime(),
+                            url: "https://twitter.com/"+config.api.twitter.screenName+"/status/"+parsedData[0].id_str
                         };
                         cb(null,cachedResponse);
                     } else {
