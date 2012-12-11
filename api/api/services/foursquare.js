@@ -38,12 +38,12 @@ module.exports = function (cb) {
             var checkin = parsedData.response.checkins.items[0];
             cachedResponse = {
                 venue: checkin.venue.name,
-                date: parseInt(checkin.createdAt)*1000,
+                date: parseInt(checkin.createdAt,10)*1000,
                 city: checkin.venue.location.city,
                 url: "https://foursquare.com/v/"+checkin.venue.id
             };
             cb(null,cachedResponse);
-        })
+        });
     });
     req.end();
 };

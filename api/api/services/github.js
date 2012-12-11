@@ -48,7 +48,7 @@ module.exports = function (cb) {
                 }
             }
             cb(null,cachedResponse);
-        })
+        });
     });
     req.end();
 };

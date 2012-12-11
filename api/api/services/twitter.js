@@ -2,20 +2,6 @@ var https = require("https");
 var twitreq = require("twitreq");
 var config = require("../../config");
 
-var options = {
-    queryParams: {
-        screen_name: config.api.twitter.screenName,
-        count: "1",
-        exclude_replies: "true"
-    },
-    method: "GET",
-    path: "/1.1/statuses/user_timeline.json",
-    oAuthConsumerKey: config.api.twitter.oAuthConsumerKey,
-    oAuthConsumerSecret: config.api.twitter.oAuthConsumerSecret,
-    oAuthToken: config.api.twitter.oAuthToken,
-    oAuthTokenSecret: config.api.twitter.oAuthTokenSecret
-}
-
 var cacheTime = 1000*60*30; // 30 mins
 var cachedResponse;
 var lastRequestTime;
@@ -35,7 +21,21 @@ module.exports = function (cb) {
 
     lastRequestTime = nowTime;
 
-    twitreq(options,function (err,reqOptions) {
+    var twitreqOptions = {
+        queryParams: {
+            screen_name: config.api.twitter.screenName,
+            count: "1",
+            exclude_replies: "true"
+        },
+        method: "GET",
+        path: "/1.1/statuses/user_timeline.json",
+        oAuthConsumerKey: config.api.twitter.oAuthConsumerKey,
+        oAuthConsumerSecret: config.api.twitter.oAuthConsumerSecret,
+        oAuthToken: config.api.twitter.oAuthToken,
+        oAuthTokenSecret: config.api.twitter.oAuthTokenSecret
+    };
+
+    twitreq(twitreqOptions,function (err,reqOptions) {
         if ( err ) {
             cb(err);
         } else {
@@ -61,8 +61,8 @@ module.exports = function (cb) {
                         cachedResponse = null;
                         cb(new Error("Twitter API error: "+parsedData.errors[0].message));
                     }
-                })
-            })
+                });
+            });
             req.end();
         }
     });

@@ -97,7 +97,7 @@ module.exports = function (server) {
                         foursquare: asyncRes[1],
                         github: asyncRes[2],
                         lastfm: asyncRes[3]
-                    }
+                    };
                     api.handleDatabaseResult(req,res,next,err,doc);
                 });
             }

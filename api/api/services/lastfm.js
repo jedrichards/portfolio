@@ -35,7 +35,12 @@ module.exports = function (cb) {
         });
         res.on("end",function () {
             var parsedData = JSON.parse(data);
-            var track = parsedData.recenttracks.track[0];
+            var track;
+            if ( Array.isArray(parsedData.recenttracks.track) ) {
+                track = parsedData.recenttracks.track[0];
+            } else {
+                track = parsedData.recenttracks.track;
+            }
             cachedResponse = {
                 track: track.name,
                 artist: track.artist["#text"],
@@ -49,7 +54,7 @@ module.exports = function (cb) {
                 cachedResponse.nowPlaying = "false";
             }
             cb(null,cachedResponse);
-        })
+        });
     });
     req.end();
 };
