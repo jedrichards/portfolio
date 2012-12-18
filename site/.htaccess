@@ -1,16 +1,15 @@
-# Rewrite URIs to always point at the JS apps for
 # Backbone HTML5 history API pushState support.
+# URLs in the format /cms/* that don't point at a file or folder redirect to /cms/index.html
+# URLs in the format /* that don't point at a file or folder redirect to /index.html
 
 <ifModule mod_rewrite.c>
     RewriteEngine On
-
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} !index
     RewriteRule ^cms/(.*) cms/index.html [L]
-
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} !index
-    RewriteRule (.*) index.html [L]
+    RewriteRule ^(.*) index.html [L]
 </ifModule>
