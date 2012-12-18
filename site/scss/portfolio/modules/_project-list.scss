@@ -1,0 +1,14 @@
+#project-list {
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #777;
+    }
+}

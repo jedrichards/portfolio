@@ -1,0 +1,8 @@
+@mixin size-in-rems($key,$size-px) {
+    #{$key}: $size-px;
+    #{$key}: ($size-px/$base-font-size-px)*1rem;
+}
+
+@mixin font-size-rems($size-px) {
+    @include size-in-rems(font-size,$size-px);
+}
