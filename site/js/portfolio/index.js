@@ -1,20 +1,30 @@
 require.config({
     baseUrl: "/js",
     paths: {
-        "jquery" : "lib/jquery",
-        "underscore" : "lib/underscore",
-        "backbone" : "lib/backbone"
+        "jquery": "lib/jquery",
+        "underscore": "lib/underscore",
+        "backbone": "lib/backbone",
+        "mustache": "lib/mustache",
+        "text": "lib/text",
+        "json": "lib/json2",
+        "portfolioapp": "portfolio/portfolio-app"
     },
     shim : {
-        underscore : {
-            exports : "_"
+        portfolioapp: {
+            deps: ["backbone"]
         },
-        backbone : {
-            exports: "Backbone"
+        underscore: {
+            exports: "_"
+        },
+        backbone: {
+            exports: "Backbone",
+            deps: ["jquery","underscore","json"]
         }
     }
 });
 
-require([],function () {
-    
+require(["jquery","portfolioapp"],function ($,portfolioApp) {
+    $(function () {
+        portfolioApp.init($("#container"));
+    });
 });
