@@ -28,11 +28,11 @@ define(["portfolio/glitch-text/glitch-text-letter"],function (GlitchTextLetter) 
         if ( this.supported ) {
             this.el.innerHTML = "";
         }
-    }
+    };
 
     GlitchText.prototype.isSupported = function () {
         return this.supported;
-    }
+    };
 
     GlitchText.prototype.start = function () {
 
@@ -49,7 +49,7 @@ define(["portfolio/glitch-text/glitch-text-letter"],function (GlitchTextLetter) 
 
         this.startTime = Date.now();
         requestAnimationFrame(this.step.bind(this));
-    }
+    };
 
     GlitchText.prototype.step = function (time) {
 
@@ -77,7 +77,7 @@ define(["portfolio/glitch-text/glitch-text-letter"],function (GlitchTextLetter) 
                 this.onComplete();
             }
         }
-    }
+    };
 
     return GlitchText;
 });

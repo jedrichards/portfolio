@@ -29,7 +29,7 @@ define(function () {
         for ( var i=0; i<this.numSteps; i++ ) {
             this.charArray[i] = i === this.numSteps-1 ? this.finalChar : this.finalChar === " " ? " " : this.randomChars.charAt(randomInt(0,this.randomChars.length));
         }
-    }
+    };
 
     GlitchTextLetter.prototype.start = function () {
         if ( this.started ) {
@@ -39,7 +39,7 @@ define(function () {
         this.value = this.finalChar;
         this.startTime = Date.now();
         requestAnimationFrame(this.step.bind(this));
-    }
+    };
 
     GlitchTextLetter.prototype.step = function (time) {
         var progress = Date.now()-this.startTime;
@@ -54,15 +54,15 @@ define(function () {
             this.complete = true;
             this.value = this.finalChar;
         }
-    }
+    };
 
     GlitchTextLetter.prototype.getCurrChar = function () {
         return this.value;
-    }
+    };
 
     GlitchTextLetter.prototype.isComplete = function () {
         return this.complete;
-    }
+    };
 
     return GlitchTextLetter;
 });

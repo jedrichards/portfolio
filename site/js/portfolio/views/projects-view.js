@@ -24,8 +24,8 @@ define([
 
         render: function () {
             this.$el.html(template);
-            this.tagFiltersView = new TagFiltersView({el:this.$el.find("#tag-filters"),collection:this.collections["tags"]});
-            this.projectListView = new ProjectListView({el:this.$el.find("#project-list"),collection:this.collections["projects"]});
+            this.tagFiltersView = new TagFiltersView({el:this.$el.find("#tag-filters"),collection:this.collections.tags});
+            this.projectListView = new ProjectListView({el:this.$el.find("#project-list"),collection:this.collections.projects});
         }
     });
 });
