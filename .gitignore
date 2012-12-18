@@ -1,8 +1,9 @@
 /todo.txt
 /design/
+/build/dist/
+/site/css/
 *.sublime-workspace
 *.sublime-project
 node_modules
-/build/dist/
 config.js
 config-prod.js
