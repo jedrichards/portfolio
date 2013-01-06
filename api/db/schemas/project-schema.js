@@ -15,6 +15,7 @@ var schema = new mongoose.Schema({
     image: String,
     date: Date,
     link: String,
+    linkTitle: String,
     tags: [{type:mongoose.Schema.Types.ObjectId,ref:"Tag"}],
     slug: {type:String,unique:true}
 });
@@ -127,7 +128,8 @@ schema.static("populateDummyData",function (cb) {
             link: "http://www.whatevs.com",
             description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             image: "/img/dummy-project-image.jpg",
-            date: new Date()
+            date: new Date(),
+            linkTitle: "Link title"
         };
         tasks.push(createProjectClosure(project));
     }

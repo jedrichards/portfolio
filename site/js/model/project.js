@@ -8,7 +8,8 @@ define(["backbone","config"],function (Backbone,config) {
             description: "Project description.",
             image: "",
             link: "",
-            tags: []
+            tags: [],
+            linkTitle: ""
         }
     });
 });

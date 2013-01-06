@@ -23,7 +23,7 @@ define(function (require) {
         },
 
         hideIcon: function () {
-            this.icon.fadeOut(750);
+            this.icon.fadeOut(300);
         }
     });
 });
