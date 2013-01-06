@@ -1,0 +1,31 @@
+.logo {
+
+    background-color: #fff;
+    display: inline-block;
+    padding-top: 0.4rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    margin-bottom: 1rem;
+
+    //position: relative;
+
+    border-radius: 0px 0px 5px 5px;
+    -moz-border-radius: 0px 0px 5px 5px;
+    -webkit-border-radius: 0px 0px 5px 5px;
+    border: 0px solid #800000;
+
+    h1 {
+        padding: 0;
+        margin: 0;
+    }
+
+    a {
+        color: $bg-grey;
+        background-color: #fff;
+
+        &:hover {
+            color: $dusty-pink;
+            @include transition(color);
+        }
+    }
+}

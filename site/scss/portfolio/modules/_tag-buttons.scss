@@ -1,0 +1,17 @@
+.tag-buttons {
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        color: #777;
+        background-color: $bg-grey;
+
+        &.selected {
+            color: #fff;
+            background-color: $dusty-pink;
+            @include transition(background-color);
+        }
+    }
+}
