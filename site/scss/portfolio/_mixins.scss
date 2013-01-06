@@ -1,8 +1,25 @@
+/**
+ * Mixin a rem-based size value for an abitrary key with a px fallback.
+ */
 @mixin size-in-rems($key,$size-px) {
     #{$key}: $size-px;
     #{$key}: ($size-px/$base-font-size-px)*1rem;
 }
 
+/**
+ * Mixin a rem-based font size.
+ */
 @mixin font-size-rems($size-px) {
     @include size-in-rems(font-size,$size-px);
+}
+
+/**
+ * Mixin a CSS transition with vendor prefixes.
+ */
+@mixin transition($key,$duration:.25s,$ease:linear) {
+    -webkit-transition: #{$key} #{$duration} #{$ease};
+    -moz-transition: #{$key} #{$duration} #{$ease};
+    -o-transition: #{$key} #{$duration} #{$ease};
+    -ms-transition: #{$key} #{$duration} #{$ease};
+    transition: #{$key} #{$duration} #{$ease};
 }

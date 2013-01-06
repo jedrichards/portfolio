@@ -1,22 +1,87 @@
-define([
-    "underscore",
-    "backbone",
-    "portfolio/routes/router",
-    "model/project-collection",
-    "model/tag-collection",
-    "portfolio/views/main-view"],
-    function (_,Backbone,Router,ProjectCollection,TagCollection,MainView) {
+define(function (require) {
 
-    var mainView;
+    var _ = require("underscore");
+    var Backbone = require("backbone");
+    var AppContainerView = require("portfolio/views/app-container-view");
+    var FeatureDetection = require("utils/feature-detection");
+    var ProjectCollection = require("model/project-collection");
+    var TagCollection = require("model/tag-collection");
+    var SocialModel = require("model/social");
+
+    var appContainerView;
     var router;
-    var collections;
 
-    /**
-     * Main CMS app init function.
-     */
-    function init(containerEl) {
+    var appContainerEl = $("#app-container");
+    var isFirstRouteChange = true;
+    var socialModel = new SocialModel();
+    var tagCollection = new TagCollection();
+    var projectCollection = new ProjectCollection();
 
-        // Enable CORS for Backbone model and collection syncing:
+    function init() {
+
+        appContainerEl.removeClass("is-hidden-for-js");
+
+        augmentBackbone();
+
+        Backbone.Notifications.on("navigate",onNavigateRequest,this);
+
+        appContainerView = new AppContainerView({
+            el:appContainerEl,
+            projectCollection: projectCollection,
+            tagCollection: tagCollection,
+            socialModel: socialModel
+        });
+
+        router = new Backbone.Router({routes:{
+            "": "root",
+            "projects/:id": "projects"
+        }});
+
+        router.on("all",onRouteChanged,this);
+        Backbone.history.start({pushState:true});
+
+        socialModel.fetch();
+        projectCollection.fetch();
+        tagCollection.fetch();
+    }
+
+    function onNavigateRequest (route) {
+        router.navigate(route,{trigger:true});
+    }
+
+    function onRouteChanged (event,id) {
+        var route = event.split(":")[1];
+        if ( isFirstRouteChange ) {
+            isFirstRouteChange = false;
+            onFirstRouteEvent(route);
+        }
+        switch ( route ) {
+            case "root":
+                Backbone.Notifications.trigger("showRoot");
+                break;
+            case "projects":
+                Backbone.Notifications.trigger("showProjectDetail",{id:id});
+                break;
+        }
+    }
+
+    function onFirstRouteEvent (route) {
+        var doIntro = route === "root";
+        if ( FeatureDetection.hasLocalStorage() && doIntro ) {
+            var localStorage = window.localStorage;
+            var key = "lastIntroTime";
+            var value = localStorage.getItem(key);
+            localStorage.setItem(key,Date.now());
+            if ( value !== null ) {
+                if ( (Date.now()-value)<10000 ) {
+                    doIntro = false;
+                }
+            }
+        }
+        Backbone.Notifications.trigger(doIntro?"doIntro":"noIntro");
+    }
+
+    function augmentBackbone () {
         var sync = Backbone.sync;
         Backbone.sync = function(method,model,options) {
             options = options || {};
@@ -24,51 +89,22 @@ define([
             options.xhrFields = {withCredentials:true};
             sync.apply(this,arguments);
         };
-
-        // Add a destroy() method to all views to faciliate GC and management of
-        // short lived views:
         Backbone.View.prototype.destroy = function() {
             this.remove();
             this.unbind();
-            if ( this.onDestroy ) {
-                this.onDestroy();
-            }
+            if ( this.onDestroy ) this.onDestroy();
         };
-
-        // Create a global event bus:
+        Backbone.View.prototype.appendView = function (subView,parentView) {
+            if ( !parentView ) {
+                parentView = this.$el;
+            }
+            parentView.append(subView.$el);
+            return subView;
+        };
         Backbone.Notifications = {};
         _.extend(Backbone.Notifications,Backbone.Events);
-
-        // Instantiate the main collections this CMS will operate on:
-        collections = {
-            "projects": new ProjectCollection(),
-            "tags": new TagCollection()
-        };
-
-        // Map routes to router events, and start listening to all route
-        // changes:
-        router = new Router({collections:collections});
-        router.on("all",onRouteChanged,this);
-
-        // Bind to relevant events dispatched by the global event bus:
-        Backbone.Notifications.on("navigate",onNavigateRequest,this);
-
-        // Instantiate the main application view:
-        mainView = new MainView({el:containerEl,collections:collections});
-
-        // Kick off Backbone HTML5 history API support:
-        Backbone.history.start({pushState:true});
     }
 
-    function onNavigateRequest(route) {
-        router.navigate(route,{trigger:true});
-    }
-
-    function onRouteChanged (event,id) {
-        console.log(event,id);
-    }
-
-    // Expose a public API:
     return {
         init: init
     };

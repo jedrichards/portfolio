@@ -2,50 +2,40 @@
     font-family: 'Ubuntu Mono';
     font-style: normal;
     font-weight: 400;
-    src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url(http://themes.googleusercontent.com/static/fonts/ubuntumono/v3/ViZhet7Ak-LRXZMXzuAfkbrIa-7acMAeDBVuclsi6Gc.woff) format('woff');
-}
-
-@font-face {
-    font-family: 'Ubuntu Mono';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Ubuntu Mono Bold'), local('UbuntuMono-Bold'), url(http://themes.googleusercontent.com/static/fonts/ubuntumono/v3/ceqTZGKHipo8pJj4molythbnBKKEOwRKgsHDreGcocg.woff) format('woff');
+    src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url(/fonts/ubuntu-mono-400-regular.woff) format('woff');
 }
 
 html {
     font-family: "Ubuntu Mono";
     font-size: $base-font-size-px;
+    height: 100%;
 }
 
 body {
     color: #fff;
-    background-color: #181818;
+    background-color: #000;
+    height: 100%;
 }
 
 a {
     cursor: pointer;
     text-decoration: none;
     color: #fff;
-    background-color: #2a6ea6;
+    background-color: $dusty-blue;
 
     &:hover {
-        background-color: #c349ba;
-        -webkit-transition: background-color .25s linear;
-        -moz-transition: background-color .25s linear;
-        -o-transition: background-color .25s linear;
-        -ms-transition: background-color .25s linear;
-        transition: background-color .25s linear;
+        background-color: $dusty-pink;
+        @include transition(background-color);
     }
 }
 
 h1,h2 {
     font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
 }
 
-h1 {
-    font-size: 24px;
-}
-
-h2 {
-    font-size: 20px;
+time {
+    color: $bg-grey;
+    background-color: $dark-grey;
 }

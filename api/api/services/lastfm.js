@@ -50,7 +50,7 @@ module.exports = function (cb) {
                 cachedResponse.date = new Date().getTime();
                 cachedResponse.nowPlaying = "true";
             } else {
-                cachedResponse.date = track.date.uts;
+                cachedResponse.date = parseInt(track.date.uts,10)*1000;
                 cachedResponse.nowPlaying = "false";
             }
             cb(null,cachedResponse);

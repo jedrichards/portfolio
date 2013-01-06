@@ -6,13 +6,9 @@ require.config({
         "backbone": "lib/backbone",
         "mustache": "lib/mustache",
         "text": "lib/text",
-        "json": "lib/json2",
-        "portfolioapp": "portfolio/portfolio-app"
+        "json": "lib/json2"
     },
     shim : {
-        portfolioapp: {
-            deps: ["backbone"]
-        },
         underscore: {
             exports: "_"
         },
@@ -23,8 +19,8 @@ require.config({
     }
 });
 
-require(["jquery","portfolioapp"],function ($,portfolioApp) {
+require(["jquery","portfolio/portfolio-app"],function ($,app) {
     $(function () {
-        portfolioApp.init($("#container"));
+        app.init();
     });
 });

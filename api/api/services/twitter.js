@@ -2,7 +2,7 @@ var https = require("https");
 var twitreq = require("twitreq");
 var config = require("../../config");
 
-var cacheTime = 1000*60*30; // 30 mins
+var cacheTime = 1000*60*5; // 5 mins
 var cachedResponse;
 var lastRequestTime;
 

@@ -89,7 +89,7 @@ module.exports = function () {
             }
         }
     ];
-    //function sendResponse(req,res,next,doc,code) {
+
     /**
      * Takes a database session document, sets the isAuth and authUser values
      * based on the function arguments and attempts to save it.

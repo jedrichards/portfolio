@@ -1,14 +1,9 @@
-#project-list {
-
-    ul {
-        list-style: none;
-        padding: 0;
-    }
+.project-list {
 
     li {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        color: #777;
+        color: $light-grey;
     }
 }
