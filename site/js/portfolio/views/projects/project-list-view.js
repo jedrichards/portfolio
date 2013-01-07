@@ -13,6 +13,7 @@ define(function (require) {
         },
 
         initialize: function (options) {
+            Backbone.Notifications.on("filterProjects",this.filterProjects,this);
             this.collection.on("reset",this.render,this);
         },
 
@@ -20,7 +21,7 @@ define(function (require) {
             var data = this.collection.toJSON();
             for ( var i=0; i<data.length; i++ ) {
                 var date = new Date(data[i].date);
-                data[i].dateText = DataFormatting.formatMSTimestamp(data[i].date);
+                data[i].dateText = DataFormatting.getDateString(data[i].date);
             }
             this.$el.html(Mustache.render(template,data));
         },

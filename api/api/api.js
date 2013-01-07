@@ -33,7 +33,6 @@ module.exports = function () {
             }
             writeHead.apply(this,arguments);
         };
-        // End hack
 
         server = restify.createServer({
             name: config.api.name,

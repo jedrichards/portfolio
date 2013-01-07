@@ -1,9 +1,11 @@
 define(function (require) {
 
+    var $ = require("jquery");
     var _ = require("underscore");
     var Backbone = require("backbone");
     var AppContainerView = require("portfolio/views/app-container-view");
     var FeatureDetection = require("utils/feature-detection");
+    var Polyfills = require("utils/polyfills");
     var ProjectCollection = require("model/project-collection");
     var TagCollection = require("model/tag-collection");
     var SocialModel = require("model/social");
@@ -18,6 +20,12 @@ define(function (require) {
     var projectCollection = new ProjectCollection();
 
     function init() {
+
+        if ( !FeatureDetection.hasCORS() && !FeatureDetection.hasXDR() ) {
+            // Browser isn't capable off CORS requests to our API so we're
+            // stumped. Exit here.
+            return;
+        }
 
         appContainerEl.removeClass("is-hidden-for-js");
 
@@ -82,14 +90,14 @@ define(function (require) {
     }
 
     function augmentBackbone () {
-        var sync = Backbone.sync;
-        Backbone.sync = function(method,model,options) {
-            options = options || {};
-            options.crossDomain = true;
-            options.xhrFields = {withCredentials:true};
-            sync.apply(this,arguments);
-        };
-        Backbone.View.prototype.destroy = function() {
+
+        if ( FeatureDetection.hasCORS() ) {
+            Polyfills.backboneCORS(Backbone);
+        } else if ( FeatureDetection.hasXDR() ) {
+            Polyfills.jqueryXDomainRequest($);
+        }
+
+        Backbone.View.prototype.destroy = function () {
             this.remove();
             this.unbind();
             if ( this.onDestroy ) this.onDestroy();
@@ -101,6 +109,7 @@ define(function (require) {
             parentView.append(subView.$el);
             return subView;
         };
+
         Backbone.Notifications = {};
         _.extend(Backbone.Notifications,Backbone.Events);
     }

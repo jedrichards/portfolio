@@ -30,9 +30,8 @@ $iconMuted:         #eee;
 
 @font-face {
   font-family: 'FontAwesome';
-  src: url('#{$fontAwesomePath}/fontawesome-webfont.eot');
-  src: url('#{$fontAwesomePath}/fontawesome-webfont.eot?#iefix') format("embedded-opentype"),
-    url('#{$fontAwesomePath}/fontawesome-webfont.woff') format("woff"),
+  //src: url('#{$fontAwesomePath}/fontawesome-webfont.eot');
+  src: url('#{$fontAwesomePath}/fontawesome-webfont.woff') format("woff"),
     url('#{$fontAwesomePath}/fontawesome-webfont.ttf') format("truetype");
   font-weight: normal;
   font-style: normal;
@@ -82,7 +81,7 @@ li {
   [class^="icon-"],
   [class*=" icon-"] {
     display: inline-block;
-    width: 1.35em;
+    width: 1.3em;
     text-align: center;
   }
 }

@@ -47,8 +47,8 @@ define(function (require) {
         },
 
         doIntro: function () {
-            this.headerView.doIntro();
             this.logoView.doIntro();
+            this.headerView.doIntro();
         },
 
         noIntro: function () {

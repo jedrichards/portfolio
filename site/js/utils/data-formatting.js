@@ -2,7 +2,11 @@ define(function (require) {
 
     return {
 
-        formatMSTimestamp: function (timestamp) {
+        getDateTimeString: function (timestamp) {
+            return this.getDateString(timestamp)+"T"+this.getTimeString(timestamp);
+        },
+
+        getDateString: function (timestamp) {
             var date;
             try {
                 date = new Date(timestamp);
@@ -10,6 +14,16 @@ define(function (require) {
                 return "00/00/00";
             }
             return this.zeroPad(date.getDate())+"/"+this.zeroPad((date.getMonth()+1))+"/"+date.getFullYear().toString().substr(2,2);
+        },
+
+        getTimeString: function (timestamp) {
+            var date;
+            try {
+                date = new Date(timestamp);
+            } catch ( err ) {
+                return "00:00";
+            }
+            return this.zeroPad(date.getHours())+":"+this.zeroPad(date.getMinutes());
         },
 
         zeroPad: function (value) {

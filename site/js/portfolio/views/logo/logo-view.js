@@ -7,10 +7,8 @@ define(function (require) {
         doIntro: function () {
             var logoContainer = this.$el.parent().prepend("<div>").children().first();
             var logo = this.$el;
-
             logoContainer.append(logo);
             logoContainer.height(logoContainer.outerHeight());
-
             logo.css("position","relative");
             logo.css("top",-logo.outerHeight());
             logo.animate({"top":0},250);
@@ -23,7 +21,7 @@ define(function (require) {
         },
 
         hideIcon: function () {
-            this.icon.fadeOut(300);
+            if ( this.icon ) this.icon.fadeOut(300);
         }
     });
 });

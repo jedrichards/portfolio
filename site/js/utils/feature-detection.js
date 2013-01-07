@@ -1,17 +1,27 @@
 define(function (require) {
 
     return {
-
         hasLocalStorage: function () {
+            var key = "foobar";
             try {
-                return "localStorage" in window && window["localStorage"] !== null;
-            } catch ( err ) {
+                localStorage.setItem(key,key);
+                localStorage.removeItem(key);
+                return true;
+            } catch (e) {
                 return false;
             }
         },
 
         hasRequestAnimationFrame: function () {
-            return ( window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ) === true;
+            return !!window.requestAnimationFrame;
+        },
+
+        hasCORS: function () {
+            return !!( window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest() )
+        },
+
+        hasXDR: function () {
+            return !!window.XDomainRequest;
         }
     };
 });

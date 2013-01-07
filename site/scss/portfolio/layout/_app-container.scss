@@ -1,10 +1,19 @@
 #app-container {
     margin: 0 auto;
     max-width: 700px;
-    padding-top: 0;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 0;
-    background-color: $bg-grey;
     min-height: 100%;
+
+    padding-top: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0;
+
+    background-color: $bg-grey;
+
+    border-left: 1px solid #343434;
+    border-right: 1px solid #343434;
+
+    -moz-box-shadow: 0 0 50px 0px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 50px 0px rgba(0,0,0,0.5);
+    box-shadow: 0 0 50px 0px rgba(0,0,0,0.5);
 }
