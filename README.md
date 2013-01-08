@@ -21,7 +21,7 @@ The API is written in Node.JS and feeds off a NoSQL MongoDB database. The API ha
 - Restify does not provide any session management or authentication so I rolled my own custom middleware for this. The [node.bcrypt.js](https://github.com/ncb000gt/node.bcrypt.js) crypto library is used to hash and salt user details in the database.
 - Client session data is stored in the database. Session ids are passed to the client as a HTTP-only cookie and clients are fingerprinted via a salted hash of their IP and user agent string to provide a basic level of protection against session hijacking.
 - Clients wishing to authenticate and access full REST API functionality (`POST`, `PUT` and `DELETE` actions for example) must authenticate by including a Base64 hash of their username and password in their request's `Authorization`.
-- Aggregation and cachine of personal social data from a variety of 3rd party APIs.
+- Aggregation and caching of personal social data from a variety of 3rd party APIs.
 
 ### Client and CMS
 
