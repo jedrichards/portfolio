@@ -16,7 +16,7 @@ define(function (require) {
             return !!window.requestAnimationFrame;
         },
 
-        hasCORS: function () {
+        hasXHR2: function () {
             return !!( window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest() )
         },
 

@@ -2,6 +2,7 @@
 /design/
 /build/dist/
 /site/css/
+/site/img/projects/
 *.sublime-workspace
 *.sublime-project
 node_modules

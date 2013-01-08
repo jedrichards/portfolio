@@ -20,7 +20,7 @@ The API is written in Node.JS and feeds off a NoSQL MongoDB database. The API ha
 - API routes are defined in a declarative manner which could allow for easy self-documentation or automated generation of a test harness in future.
 - Restify does not provide any session management or authentication so I rolled my own custom middleware for this. The [node.bcrypt.js](https://github.com/ncb000gt/node.bcrypt.js) crypto library is used to hash and salt user details in the database.
 - Client session data is stored in the database. Session ids are passed to the client as a HTTP-only cookie and clients are fingerprinted via a salted hash of their IP and user agent string to provide a basic level of protection against session hijacking.
-- Clients wishing to authenticate and access full REST API functionality (`POST`, `PUT` and `DELETE` actions for example) must authenticate by including a Base64 hash of their username and password in the `Authorization` header along with the request. The production API should support HTTPS to secure user credentials in transit.
+- Clients wishing to authenticate and access full REST API functionality (`POST`, `PUT` and `DELETE` actions for example) must authenticate by including a Base64 hash of their username and password in their request's `Authorization`.
 
 ### Client and CMS
 
@@ -30,6 +30,7 @@ The portfolio client site and CMS are served normally via Apache. The client has
 - Seamless integration with the REST API via Backbone models.
 - `Backbone.sync` and `$.ajaxTransport` functions extended to support CORS.
 - Highly modular code structure achieved via [RequireJS](http://requirejs.org).
+- Mustache based templates for all UI elements stored as seperate files and pulled in via RequireJS's `text!` feature.
 - [Twitter Bootstrap](http://twitter.github.com/bootstrap/) used to rapidly build out the CMS UI.
 - The JavaScript web apps that comprise the portfolio client site and CMS, while served from two different URLs, are able to share a code base enabling the reuse and sharing of model and database code.
 - A [SMACSS](https://smacss.com) approach used for the portfolio CSS, all written in [SCSS](http://sass-lang.com).

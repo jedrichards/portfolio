@@ -21,9 +21,9 @@ define(function (require) {
 
     function init() {
 
-        if ( !FeatureDetection.hasCORS() && !FeatureDetection.hasXDR() ) {
-            // Browser isn't capable off CORS requests to our API so we're
-            // stumped. Exit here.
+        if ( !FeatureDetection.hasXHR2() && !FeatureDetection.hasXDR() ) {
+            // Browser isn't capable of CORS requests to our API so we're
+            // stumped. Exit here :(
             return;
         }
 
@@ -91,7 +91,7 @@ define(function (require) {
 
     function augmentBackbone () {
 
-        if ( FeatureDetection.hasCORS() ) {
+        if ( FeatureDetection.hasXHR2() ) {
             Polyfills.backboneCORS(Backbone);
         } else if ( FeatureDetection.hasXDR() ) {
             Polyfills.jqueryXDomainRequest($);
