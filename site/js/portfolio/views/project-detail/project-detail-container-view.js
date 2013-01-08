@@ -27,7 +27,6 @@ define(function (require) {
         appendProject: function () {
             var model = this.collection.get(this.currID);
             if ( !model ) {
-                Backbone.Notifications.trigger("navigate","");
                 return;
             }
             this.projectDetailView = this.appendView(new ProjectDetailView({

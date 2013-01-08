@@ -12,10 +12,12 @@ define(function (require) {
                 Polyfills.requestAnimationFrame(false);
             }
             if ( FeatureDetection.hasRequestAnimationFrame() ) {
+                var self = this;
                 this.$el.css("min-height",this.$el.height());
                 this.$el.fadeTo(0,0).fadeTo(4000,1);
                 this.glitchText = new GlitchText(this.$el.find("p")[0],4000,2000,30,function () {
                     Backbone.Notifications.trigger("introComplete");
+                    self.$el.removeAttr("style");
                 });
                 this.glitchText.start();
             } else {

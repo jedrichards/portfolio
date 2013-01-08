@@ -81,7 +81,7 @@ define(function (require) {
             var value = localStorage.getItem(key);
             localStorage.setItem(key,Date.now());
             if ( value !== null ) {
-                if ( (Date.now()-value)<10000 ) {
+                if ( (Date.now()-value)<15000 ) {
                     doIntro = false;
                 }
             }
