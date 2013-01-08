@@ -30,6 +30,7 @@ schema.pre("save",function (next) {
 schema.static("getProjects",function (cb) {
     this
         .find({})
+        .sort("-date")
         .populate("tags")
         .exec(cb);
 });
