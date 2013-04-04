@@ -20,24 +20,24 @@ define(function (require) {
 
             if ( data.twitter ) {
                 data.twitter.text = DataFormatting.linkifyTweetText(data.twitter.text);
-                data.twitter.dateText = DataFormatting.getDateTimeString(data.twitter.date);
+                data.twitter.dateText = DataFormatting.getTimeAgo(data.twitter.date);
                 this.appendSocialItem(Mustache.render(require("text!portfolio/templates/about/twitter.mustache"),data.twitter));
             }
 
             if ( data.github ) {
-                data.github.dateText = DataFormatting.getDateTimeString(data.github.date);
+                data.github.dateText = DataFormatting.getTimeAgo(data.github.date);
                 data.github.sha = data.github.sha.substring(0,6);
                 data.github.repoUrl = "https://github.com/"+data.github.repo;
                 this.appendSocialItem(Mustache.render(require("text!portfolio/templates/about/github.mustache"),data.github));
             }
 
             if ( data.foursquare ) {
-                data.foursquare.dateText = DataFormatting.getDateTimeString(data.foursquare.date);
+                data.foursquare.dateText = DataFormatting.getTimeAgo(data.foursquare.date);
                 this.appendSocialItem(Mustache.render(require("text!portfolio/templates/about/foursquare.mustache"),data.foursquare));
             }
 
             if ( data.lastfm ) {
-                data.lastfm.dateText = DataFormatting.getDateTimeString(data.lastfm.date);
+                data.lastfm.dateText = DataFormatting.getTimeAgo(data.lastfm.date);
                 data.lastfm.verb = data.lastfm.nowPlaying === "true" ? "Listening" : "Listened";
                 this.appendSocialItem(Mustache.render(require("text!portfolio/templates/about/lastfm.mustache"),data.lastfm));
             }

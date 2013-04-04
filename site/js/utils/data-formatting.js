@@ -1,6 +1,12 @@
 define(function (require) {
 
+    var moment = require("moment");
+
     return {
+
+        getTimeAgo: function (timestamp) {
+            return moment(timestamp).fromNow();
+        },
 
         getDateTimeString: function (timestamp) {
             return this.getDateString(timestamp)+"T"+this.getTimeString(timestamp);

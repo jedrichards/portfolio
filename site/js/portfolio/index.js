@@ -6,7 +6,8 @@ require.config({
         "backbone": "lib/backbone",
         "mustache": "lib/mustache",
         "text": "lib/text",
-        "json": "lib/json2"
+        "json": "lib/json2",
+        "moment": "lib/moment"
     },
     shim : {
         underscore: {
