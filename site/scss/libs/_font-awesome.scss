@@ -88,10 +88,10 @@ li {
 
 .icon-spin {
   display: inline-block;
-  -moz-animation: spin 0.75s infinite linear;
-  -o-animation: spin 0.75s infinite linear;
-  -webkit-animation: spin 0.75s infinite linear;
-  animation: spin 0.75s infinite linear;
+  -moz-animation: spin 0.5s infinite linear;
+  -o-animation: spin 0.5s infinite linear;
+  -webkit-animation: spin 0.5s infinite linear;
+  animation: spin 0.5s infinite linear;
 }
 @-moz-keyframes spin {
   0% { -moz-transform: rotate(0deg); }
