@@ -23,7 +23,8 @@ module.exports = function (cb) {
     var req = https.request({
         method: "GET",
         path: "/users/"+config.api.github.user+"/events",
-        hostname: "api.github.com"
+        hostname: "api.github.com",
+        headers: {"user-agent":"api.seisaku.co.uk"}
     },function (res) {
         res.setEncoding("utf8");
         res.on("error",function (err) {
