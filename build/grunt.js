@@ -84,8 +84,7 @@ module.exports = function (grunt) {
                 dest: config.prodSiteLocation,
                 recursive: true,
                 syncDest: true,
-                host: config.prodHost,
-                compareMode: "sizeOnly"
+                host: config.prodHost
             },
             deployAPI: {
                 src: "<%= apiDistDir %>/",
@@ -93,7 +92,6 @@ module.exports = function (grunt) {
                 recursive: true,
                 syncDest: true,
                 host: config.prodHost,
-                compareMode: "sizeOnly",
                 args: ["--links"]
             }
         },
@@ -192,4 +190,5 @@ module.exports = function (grunt) {
     grunt.registerTask("testAPI","lint:build lint:api vows:api");
     grunt.registerTask("buildAPI","testAPI clean:api rsync:buildAPI shell:cpAPIProdConfigToDist");
     grunt.registerTask("deployAPI","buildAPI rsync:deployAPI shell:prodAPINPMInstallCMD shell:prodAPIRestartCMD");
+    grunt.registerTask("forceDeployAPI","clean:api rsync:buildAPI shell:cpAPIProdConfigToDist rsync:deployAPI shell:prodAPINPMInstallCMD shell:prodAPIRestartCMD");
 };

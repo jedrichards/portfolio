@@ -22,7 +22,7 @@ var schema = new mongoose.Schema({
 
 schema.pre("save",function (next) {
     this.name = sanitizer.escape(this.name);
-    this.description = sanitizer.escape(this.description||"");
+    //this.description = sanitizer.escape(this.description||"");
     this.slug = slugs(this.name);
     next();
 });
