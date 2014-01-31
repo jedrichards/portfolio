@@ -22,7 +22,7 @@ module.exports = function (cb) {
 
     var req = https.request({
         method: "GET",
-        path: "/v2/users/self/checkins?oauth_token="+config.api.foursquare.oAuthToken+"&limit=1",
+        path: "/v2/users/self/checkins?oauth_token="+config.api.foursquare.oAuthToken+"&limit=1&v=20140131",
         hostname: "api.foursquare.com"
     },function (res) {
         res.setEncoding("utf8");
